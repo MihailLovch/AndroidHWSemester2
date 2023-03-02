@@ -1,0 +1,75 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+}
+
+android {
+    namespace 'com.example.androidhwsemester2'
+    compileSdk 33
+
+    defaultConfig {
+        applicationId "com.example.androidhwsemester2"
+        minSdk 24
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    buildFeatures {
+        viewBinding true
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    def core_ktx_version = '1.9.0'
+    implementation "androidx.core:core-ktx:$core_ktx_version"
+
+    def app_compat_version = '1.6.1'
+    implementation "androidx.appcompat:appcompat:$app_compat_version"
+
+    def android_material_version = '1.8.0'
+    implementation "com.google.android.material:material:$android_material_version"
+
+    def constraint_layout_version = '2.1.4'
+    implementation "androidx.constraintlayout:constraintlayout:$constraint_layout_version"
+
+    def fragment_version = '1.5.5'
+    implementation "androidx.fragment:fragment-ktx:$fragment_version"
+
+    def vb_delegate_version = '1.5.6'
+    implementation "com.github.kirich1409:viewbindingpropertydelegate-noreflection:$vb_delegate_version"
+
+    def okhttp_version = '4.10.0'
+    implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
+
+    def gson_version = '2.10.1'
+    implementation "com.google.code.gson:gson:${gson_version}"
+
+    def retrofit_version = '2.9.0'
+    implementation "com.squareup.retrofit2:retrofit:${retrofit_version}"
+    implementation "com.squareup.retrofit2:converter-gson:${retrofit_version}"
+
+    def coroutines_version = '1.6.4'
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
+    // Testing section
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+}
