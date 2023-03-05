@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">AndroidHWSemester2</string>
+    <string name="city_hint">City name</string>
+    <string name="by_name_text">Find by name</string>
+    <string name="by_cords_text">Find by cords</string>
+    <string name="iv_hint">icon</string>
 </resources>
