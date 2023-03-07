@@ -1,4 +1,4 @@
-package com.example.androidhwsemester2.data.network
+package com.example.androidhwsemester2.data.remote.network
 
 import com.example.androidhwsemester2.BuildConfig
 import okhttp3.OkHttpClient
@@ -45,7 +45,7 @@ object OpenWeatherService {
     }
 
 
-    fun getInstance()  : OpenWeatherApiService{
+    fun getInstance()  : OpenWeatherApiService {
         return retrofitInstance
     }
 }

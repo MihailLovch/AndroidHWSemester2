@@ -1,8 +1,9 @@
-package com.example.androidhwsemester2.data.repository
+package com.example.androidhwsemester2.data.remote.repository
 
-import com.example.androidhwsemester2.data.model.WeatherResponse
-import com.example.androidhwsemester2.data.network.OpenWeatherApiService
-import com.example.androidhwsemester2.data.network.OpenWeatherService
+import com.example.androidhwsemester2.data.local.entity.CityWeatherInfo
+import com.example.androidhwsemester2.data.remote.model.WeatherResponse
+import com.example.androidhwsemester2.data.remote.network.OpenWeatherApiService
+import com.example.androidhwsemester2.data.remote.network.OpenWeatherService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -13,15 +14,16 @@ class WeatherRepository {
         weatherService = OpenWeatherService.getInstance()
     }
 
+    suspend fun saveWeatherInfo(info: CityWeatherInfo){
+
+    }
     suspend fun getWeatherInfoByCityName(city: String): WeatherResponse? {
-        Result
         return withContext(Dispatchers.IO) {
             weatherService?.getWeatherByCityName(city = city)
         }
     }
 
     suspend fun getWeatherInfoByCords(lat: Double, lon: Double): WeatherResponse? {
-        Result
         return withContext(Dispatchers.IO) {
             weatherService?.getWeatherByCords(
                 latitude = lat,

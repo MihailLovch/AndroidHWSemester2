@@ -1,5 +1,7 @@
-package com.example.androidhwsemester2.data.model
+package com.example.androidhwsemester2.data.remote.model
 
+import android.os.Parcel
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 
 data class WeatherResponse(
@@ -17,9 +19,9 @@ data class WeatherResponse(
 
 data class WeatherCoords(
     @SerializedName("lat")
-    val latitude: Float?,
+    val latitude: Double?,
     @SerializedName("lon")
-    val longitude: Float?
+    val longitude: Double?
 )
 
 data class WeatherInfo(

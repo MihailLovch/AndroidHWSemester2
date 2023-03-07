@@ -1,6 +1,6 @@
-package com.example.androidhwsemester2.data.network
+package com.example.androidhwsemester2.data.remote.network
 
-import com.example.androidhwsemester2.data.model.WeatherResponse
+import com.example.androidhwsemester2.data.remote.model.WeatherResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -14,5 +14,5 @@ interface OpenWeatherApiService {
     suspend fun getWeatherByCords(
         @Query("lat") latitude: Double,
         @Query("lon") longitude: Double,
-    ):WeatherResponse
+    ): WeatherResponse
 }
