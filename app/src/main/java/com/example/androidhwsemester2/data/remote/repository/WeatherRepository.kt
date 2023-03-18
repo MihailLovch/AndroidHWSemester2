@@ -13,10 +13,6 @@ class WeatherRepository {
     init {
         weatherService = OpenWeatherService.getInstance()
     }
-
-    suspend fun saveWeatherInfo(info: CityWeatherInfo){
-
-    }
     suspend fun getWeatherInfoByCityName(city: String): WeatherResponse? {
         return withContext(Dispatchers.IO) {
             weatherService?.getWeatherByCityName(city = city)

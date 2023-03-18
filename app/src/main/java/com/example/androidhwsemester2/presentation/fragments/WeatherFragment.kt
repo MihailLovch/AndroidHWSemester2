@@ -16,7 +16,7 @@ import androidx.lifecycle.lifecycleScope
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.androidhwsemester2.R
 import com.example.androidhwsemester2.data.local.entity.CityWeatherInfo
-import com.example.androidhwsemester2.data.local.maper.ResponseMapper
+import com.example.androidhwsemester2.data.mappers.WeatherResponseMapper
 import com.example.androidhwsemester2.data.local.repository.WeatherInfoRepository
 import com.example.androidhwsemester2.data.remote.model.WeatherResponse
 import com.example.androidhwsemester2.data.remote.repository.WeatherRepository
@@ -24,13 +24,9 @@ import com.example.androidhwsemester2.databinding.FragmentWeatherBinding
 import com.example.androidhwsemester2.presentation.MainActivity
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import okhttp3.ResponseBody
 import retrofit2.HttpException
-import retrofit2.Response
 import java.util.Calendar
-import java.util.Date
 import kotlin.properties.Delegates
 
 class WeatherFragment : Fragment(R.layout.fragment_weather) {
@@ -154,7 +150,7 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
                     lon = location.longitude
                 )
                 if (cache == null) {
-                    weatherInfo = ResponseMapper.toEntity(
+                    weatherInfo = WeatherResponseMapper.mapToDB(
                         weatherRepository?.getWeatherInfoByCords(
                             lat = location.latitude,
                             lon = location.longitude
@@ -181,7 +177,7 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
             val cache = checkCache(cityName)
             if (cache == null) {
                 weatherInfo =
-                    ResponseMapper.toEntity(weatherRepository?.getWeatherInfoByCityName(cityName))
+                    WeatherResponseMapper.mapToDB(weatherRepository?.getWeatherInfoByCityName(cityName))
                 dbRepository?.saveCityWeatherInfo(weatherInfo ?: throw Exception("bad response"))
                 Log.d("cache", "from network")
             } else {

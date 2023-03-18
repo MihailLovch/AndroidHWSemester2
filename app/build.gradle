@@ -41,7 +41,7 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.core:core-ktx:+'
+
     def core_ktx_version = '1.9.0'
     implementation "androidx.core:core-ktx:$core_ktx_version"
 
