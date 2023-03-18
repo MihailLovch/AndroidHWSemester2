@@ -12,4 +12,4 @@ data class WeatherDataModel(
     val lastSearch: Date,
     val lat: Double,
     val lon: Double,
-)
+): java.io.Serializable

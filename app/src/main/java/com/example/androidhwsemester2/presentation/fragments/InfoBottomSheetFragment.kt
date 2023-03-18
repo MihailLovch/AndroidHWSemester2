@@ -6,17 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.example.androidhwsemester2.R
-import com.example.androidhwsemester2.data.local.entity.CityWeatherInfo
-import com.example.androidhwsemester2.data.remote.model.WeatherResponse
 import com.example.androidhwsemester2.databinding.DialogFragmentInfoBinding
 import com.example.androidhwsemester2.presentation.extensions.getSerializableValue
+import com.example.androidhwsemester2.presentation.model.WeatherDataModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class InfoBottomSheetFragment : BottomSheetDialogFragment(R.layout.dialog_fragment_info) {
 
     private var _viewBinding: DialogFragmentInfoBinding? = null
     private val viewBinding: DialogFragmentInfoBinding get() = _viewBinding!!
-    private var cityWeatherInfo: CityWeatherInfo? = null
+    private var cityWeatherInfo: WeatherDataModel? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,17 +27,18 @@ class InfoBottomSheetFragment : BottomSheetDialogFragment(R.layout.dialog_fragme
         initViews()
         return viewBinding.root
     }
+
     private fun initViews() {
         with(viewBinding) {
             Glide
                 .with(requireContext())
-                .load(getString(R.string.icon_uri,cityWeatherInfo?.iconId))
+                .load(getString(R.string.icon_uri, cityWeatherInfo?.iconId))
                 .into(weatherIconIv)
-            cityNameTv.text =getString(R.string.city_name,cityWeatherInfo?.cityName)
-            temperatureTv.text =getString(R.string.temperature,cityWeatherInfo?.temperature)
-            humidityTv.text =getString(R.string.humidity,cityWeatherInfo?.humidity)
-            pressureTv.text =getString(R.string.pressure,cityWeatherInfo?.pressure)
-            speedTv.text =getString(R.string.wind_speed,cityWeatherInfo?.windSpeed)
+            cityNameTv.text = getString(R.string.city_name, cityWeatherInfo?.cityName)
+            temperatureTv.text = getString(R.string.temperature, cityWeatherInfo?.temperature)
+            humidityTv.text = getString(R.string.humidity, cityWeatherInfo?.humidity)
+            pressureTv.text = getString(R.string.pressure, cityWeatherInfo?.pressure)
+            speedTv.text = getString(R.string.wind_speed, cityWeatherInfo?.windSpeed)
         }
     }
 
@@ -53,6 +53,7 @@ class InfoBottomSheetFragment : BottomSheetDialogFragment(R.layout.dialog_fragme
         fun newInstance(bundle: Bundle) = InfoBottomSheetFragment().apply {
             arguments = bundle
         }
+
         const val TAG = "InfoBottomSheetFragment"
     }
 }
