@@ -6,7 +6,7 @@ import java.util.Calendar
 
 object CityWeatherInfoMapper {
 
-    fun map(item : CityWeatherInfo?) : WeatherEntity{
+    fun map(item: CityWeatherInfo?): WeatherEntity {
         return item?.let {
             WeatherEntity(
                 cityName = item.cityName,
@@ -19,8 +19,7 @@ object CityWeatherInfoMapper {
                 lat = item.lat,
                 lon = item.lon
             )
-        } ?:
-        WeatherEntity(
+        } ?: WeatherEntity(
             cityName = "",
             temperature = 0f,
             humidity = 0f,

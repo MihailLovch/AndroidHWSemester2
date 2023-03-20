@@ -14,18 +14,19 @@ data class WeatherEntity(
     val lastSearch: Date,
     val lat: Double,
     val lon: Double,
-) {
-    fun mapWeatherEntity(): WeatherDataModel {
-        return WeatherDataModel(
-            cityName = this.cityName,
-            temperature = this.temperature,
-            humidity = this.humidity,
-            pressure = this.pressure,
-            windSpeed = this.windSpeed,
-            iconId = this.iconId,
-            lastSearch = this.lastSearch,
-            lat = this.lat,
-            lon = this.lon,
-        )
-    }
+)
+
+fun WeatherEntity.mapWeatherEntity(): WeatherDataModel {
+    return WeatherDataModel(
+        cityName = this.cityName,
+        temperature = this.temperature,
+        humidity = this.humidity,
+        pressure = this.pressure,
+        windSpeed = this.windSpeed,
+        iconId = this.iconId,
+        lastSearch = this.lastSearch,
+        lat = this.lat,
+        lon = this.lon,
+    )
 }
+

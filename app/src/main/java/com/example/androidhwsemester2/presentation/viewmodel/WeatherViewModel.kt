@@ -28,7 +28,7 @@ class WeatherViewModel(
         viewModelScope.launch {
             _progressBarState.value = true
             runCatching {
-                getWeatherByName(name)
+                getWeatherByName(name,true)
             }.onSuccess { weatherDataModel ->
                 _weatherInfoState.value = weatherDataModel
             }.onFailure { ex ->
@@ -42,7 +42,7 @@ class WeatherViewModel(
         viewModelScope.launch {
             _progressBarState.value = true
             runCatching {
-                getWeatherByCords(lat = lat, lon = lon)
+                getWeatherByCords(lat = lat, lon = lon, true)
             }.onSuccess { weatherDataModel ->
                 _weatherInfoState.value = weatherDataModel
             }.onFailure { ex ->
