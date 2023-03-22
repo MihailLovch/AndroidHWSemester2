@@ -1,3 +1,15 @@
 <resources>
-    <string name="app_name">AndroidHWSemester2</string>
+    <string name="app_name">WeatherApp</string>
+    <string name="city_hint">City name</string>
+    <string name="by_name_text">Find by name</string>
+    <string name="by_cords_text">Find by cords</string>
+    <string name="iv_hint">icon</string>
+    <string name="city_name">City name: %1$s</string>
+    <string name="temperature">Temperature: %1$.1f C</string>
+    <string name="humidity">Humidity: %1$.0f %%</string>
+    <string name="pressure">Pressure: %1$.0f</string>
+    <string name="wind_speed">Wind speed: %1$.0f</string>
+    <string name="icon_uri">https://openweathermap.org/img/wn/%1$s@2x.png</string>
+    <string name="add_new_city">Add new City</string>
+    <string name="name">Name</string>
 </resources>
