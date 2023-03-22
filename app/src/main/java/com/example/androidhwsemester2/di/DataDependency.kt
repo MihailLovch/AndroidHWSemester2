@@ -6,8 +6,10 @@ import com.example.androidhwsemester2.data.remote.network.OpenWeatherApiService
 import com.example.androidhwsemester2.data.remote.network.OpenWeatherService
 import com.example.androidhwsemester2.data.repository.WeatherRepositoryImpl
 import com.example.androidhwsemester2.domain.repository.WeatherRepository
+import com.example.androidhwsemester2.domain.usecase.GetCitiesFromDataBaseUseCase
 import com.example.androidhwsemester2.domain.usecase.GetWeatherByCityNameUseCase
 import com.example.androidhwsemester2.domain.usecase.GetWeatherByCurrentCordsUseCase
+import com.example.androidhwsemester2.domain.usecase.SaveCityInfoUseCase
 
 class DataDependency(context: Context) {
 
@@ -21,5 +23,6 @@ class DataDependency(context: Context) {
 
     val getWeatherByNameUseCase: GetWeatherByCityNameUseCase = GetWeatherByCityNameUseCase(weatherRepository)
     val getWeatherByCordsUseCase: GetWeatherByCurrentCordsUseCase = GetWeatherByCurrentCordsUseCase(weatherRepository)
-
+    val getCitiesFromDataBaseUseCase: GetCitiesFromDataBaseUseCase = GetCitiesFromDataBaseUseCase(weatherRepository)
+    val saveCityInfoUseCase: SaveCityInfoUseCase = SaveCityInfoUseCase(weatherRepository)
 }

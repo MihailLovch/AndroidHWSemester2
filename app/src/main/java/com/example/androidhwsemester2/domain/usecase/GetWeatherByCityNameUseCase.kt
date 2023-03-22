@@ -11,6 +11,5 @@ class GetWeatherByCityNameUseCase(
 ) {
     suspend operator fun invoke(cityName: String, cache: Boolean = false): WeatherDataModel {
         return weatherRepository.getWeatherInfoByCityName(cityName, cache).mapWeatherEntity()
-
     }
 }

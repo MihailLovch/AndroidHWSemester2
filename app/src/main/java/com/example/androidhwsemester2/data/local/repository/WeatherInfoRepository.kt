@@ -23,7 +23,9 @@ class WeatherInfoRepository(context: Context) {
     suspend fun saveCityWeatherInfo(info: CityWeatherInfo): Long{
         return weatherInfoDao.save(info)
     }
-
+    suspend fun getAllCities(): List<CityWeatherInfo?>{
+        return weatherInfoDao.getAll()
+    }
     companion object {
         private const val DATABASE_NAME = "itis.db.lovc"
     }

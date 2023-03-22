@@ -9,4 +9,7 @@ interface WeatherRepository {
     suspend fun checkCache(lat: Double, lon: Double): WeatherEntity?
     suspend fun checkCache(cityName: String): WeatherEntity?
 
+    suspend fun getAllCities(): List<WeatherEntity>
+
+    suspend fun saveCity(model : WeatherEntity): Long
 }

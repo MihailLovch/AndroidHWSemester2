@@ -60,6 +60,11 @@ class WeatherRepositoryImpl(
         }
     }
 
+    override suspend fun getAllCities(): List<WeatherEntity>{
+        return withContext(Dispatchers.IO){
+            localSource.getAllCities().map {(CityWeatherInfoMapper::map)(it) }
+        }
+    }
     override suspend fun checkCache(lat: Double, lon: Double): WeatherEntity? {
         return withContext(Dispatchers.IO) {
             val cityWeatherInfo = localSource.getCityWeatherInfoByCords(lat = lat, lon = lon)
@@ -73,6 +78,11 @@ class WeatherRepositoryImpl(
         }
     }
 
+    override suspend fun saveCity(model: WeatherEntity): Long {
+        return withContext(Dispatchers.IO) {
+            localSource.saveCityWeatherInfo((WeatherEntityMapper::map)(model))
+        }
+    }
     override suspend fun checkCache(cityName: String): WeatherEntity? {
         return withContext(Dispatchers.IO) {
             val cityWeatherInfo = localSource.getCityWeatherInfoByName(cityName)

@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.fragment.app.commit
 import com.example.androidhwsemester2.R
 import com.example.androidhwsemester2.presentation.fragments.WeatherFragment
+import com.example.androidhwsemester2.presentation.fragments.WeatherPagerFragment
 import com.example.androidhwsemester2.presentation.permissions.PermissionsHandler
 
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
@@ -18,8 +19,8 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         supportFragmentManager.commit {
             add(
                 fragmentContainerId,
-                WeatherFragment.newInstance(),
-                WeatherFragment.TAG
+                WeatherPagerFragment.newInstance(),
+                WeatherPagerFragment.TAG
             )
         }
     }

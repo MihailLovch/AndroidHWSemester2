@@ -30,3 +30,17 @@ fun WeatherEntity.mapWeatherEntity(): WeatherDataModel {
     )
 }
 
+fun WeatherDataModel.mapWeatherDataModel(): WeatherEntity {
+    return WeatherEntity(
+        cityName = this.cityName,
+        temperature = this.temperature,
+        humidity = this.humidity,
+        pressure = this.pressure,
+        windSpeed = this.windSpeed,
+        iconId = this.iconId,
+        lastSearch = this.lastSearch,
+        lat = this.lat,
+        lon = this.lon,
+    )
+}
+

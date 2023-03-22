@@ -15,5 +15,6 @@ interface CityWeatherInfoDao {
     @Query("SELECT * FROM cache WHERE abs(lat - :lat)<0.1  AND abs(lon - :lon)<0.1  LIMIT 1")
     suspend fun getInfoByCityCords(lat: Double, lon: Double) : CityWeatherInfo?
 
-
+    @Query("SELECT * from cache")
+    suspend fun getAll(): List<CityWeatherInfo>
 }

@@ -10,4 +10,6 @@
     <string name="pressure">Pressure: %1$.0f</string>
     <string name="wind_speed">Wind speed: %1$.0f</string>
     <string name="icon_uri">https://openweathermap.org/img/wn/%1$s@2x.png</string>
+    <string name="add_new_city">Add new City</string>
+    <string name="name">Name</string>
 </resources>
