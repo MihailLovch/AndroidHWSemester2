@@ -9,8 +9,8 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.bumptech.glide.Glide
 import com.example.androidhwsemester2.R
 import com.example.androidhwsemester2.databinding.FragmentCityInfoBinding
-import com.example.androidhwsemester2.di.DataDependency
-import com.example.androidhwsemester2.di.ViewModelArgsKey
+import com.example.androidhwsemester2.di.manual.DataDependency
+import com.example.androidhwsemester2.di.manual.ViewModelArgsKey
 import com.example.androidhwsemester2.presentation.viewmodel.ViewPagerViewModel
 
 class CityInfoFragment : Fragment(R.layout.fragment_city_info) {

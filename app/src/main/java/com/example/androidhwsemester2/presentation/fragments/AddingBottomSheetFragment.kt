@@ -8,8 +8,8 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.viewmodel.MutableCreationExtras
 import com.example.androidhwsemester2.R
 import com.example.androidhwsemester2.databinding.DialogFragmentAddingBinding
-import com.example.androidhwsemester2.di.DataDependency
-import com.example.androidhwsemester2.di.ViewModelArgsKey
+import com.example.androidhwsemester2.di.manual.DataDependency
+import com.example.androidhwsemester2.di.manual.ViewModelArgsKey
 import com.example.androidhwsemester2.presentation.viewmodel.ViewPagerViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 

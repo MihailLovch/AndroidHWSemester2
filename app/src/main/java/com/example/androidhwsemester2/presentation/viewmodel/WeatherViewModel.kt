@@ -3,7 +3,7 @@ package com.example.androidhwsemester2.presentation.viewmodel
 import androidx.lifecycle.*
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
-import com.example.androidhwsemester2.di.ViewModelArgsKey
+import com.example.androidhwsemester2.di.manual.ViewModelArgsKey
 import com.example.androidhwsemester2.domain.usecase.GetWeatherByCityNameUseCase
 import com.example.androidhwsemester2.domain.usecase.GetWeatherByCurrentCordsUseCase
 import com.example.androidhwsemester2.presentation.extensions.handleException

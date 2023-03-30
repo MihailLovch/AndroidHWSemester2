@@ -8,7 +8,6 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
 import android.view.View
-import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -17,8 +16,8 @@ import androidx.lifecycle.viewmodel.MutableCreationExtras
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.androidhwsemester2.R
 import com.example.androidhwsemester2.databinding.FragmentWeatherBinding
-import com.example.androidhwsemester2.di.DataDependency
-import com.example.androidhwsemester2.di.ViewModelArgsKey
+import com.example.androidhwsemester2.di.manual.DataDependency
+import com.example.androidhwsemester2.di.manual.ViewModelArgsKey
 import com.example.androidhwsemester2.presentation.MainActivity
 import com.example.androidhwsemester2.presentation.extensions.shortToast
 import com.example.androidhwsemester2.presentation.viewmodel.WeatherViewModel

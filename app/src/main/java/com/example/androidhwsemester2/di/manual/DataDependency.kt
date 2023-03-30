@@ -1,4 +1,4 @@
-package com.example.androidhwsemester2.di
+package com.example.androidhwsemester2.di.manual
 
 import android.content.Context
 import com.example.androidhwsemester2.data.local.repository.WeatherInfoRepository

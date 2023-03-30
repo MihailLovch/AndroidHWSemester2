@@ -1,4 +1,4 @@
-package com.example.androidhwsemester2.di
+package com.example.androidhwsemester2.di.manual
 
 import androidx.lifecycle.viewmodel.CreationExtras
 import com.example.androidhwsemester2.domain.usecase.GetCitiesFromDataBaseUseCase

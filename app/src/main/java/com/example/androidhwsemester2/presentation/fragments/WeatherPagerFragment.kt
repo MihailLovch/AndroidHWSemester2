@@ -8,8 +8,8 @@ import androidx.lifecycle.viewmodel.MutableCreationExtras
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.androidhwsemester2.R
 import com.example.androidhwsemester2.databinding.FragmentViewPagerBinding
-import com.example.androidhwsemester2.di.DataDependency
-import com.example.androidhwsemester2.di.ViewModelArgsKey
+import com.example.androidhwsemester2.di.manual.DataDependency
+import com.example.androidhwsemester2.di.manual.ViewModelArgsKey
 import com.example.androidhwsemester2.presentation.CityPagerAdapter
 import com.example.androidhwsemester2.presentation.extensions.shortToast
 import com.example.androidhwsemester2.presentation.viewmodel.ViewPagerViewModel
