@@ -3,15 +3,13 @@ package com.example.androidhwsemester2.data.local.repository
 import android.content.Context
 import androidx.room.Room
 import com.example.androidhwsemester2.data.local.AppDataBase
+import com.example.androidhwsemester2.data.local.dao.CityWeatherInfoDao
 import com.example.androidhwsemester2.data.local.entity.CityWeatherInfo
+import javax.inject.Inject
 
-class WeatherInfoRepository(context: Context) {
-    private val db by lazy {
-        Room.databaseBuilder(context, AppDataBase::class.java, DATABASE_NAME).build()
-    }
-    private val weatherInfoDao by lazy {
-        db.cityWeatherInfoDao()
-    }
+class WeatherInfoRepository @Inject constructor() {
+    @Inject
+    lateinit var weatherInfoDao: CityWeatherInfoDao
 
     suspend fun getCityWeatherInfoByName(name: String): CityWeatherInfo? {
         return weatherInfoDao.getInfoByCityName(name = name)
@@ -25,8 +23,5 @@ class WeatherInfoRepository(context: Context) {
     }
     suspend fun getAllCities(): List<CityWeatherInfo?>{
         return weatherInfoDao.getAll()
-    }
-    companion object {
-        private const val DATABASE_NAME = "itis.db.lovc"
     }
 }

@@ -14,7 +14,7 @@ import com.example.androidhwsemester2.domain.usecase.SaveCityInfoUseCase
 class DataDependency(context: Context) {
 
     private val remoteSource: OpenWeatherApiService = OpenWeatherService.getInstance()
-    private val localSource: WeatherInfoRepository = WeatherInfoRepository(context)
+    private val localSource: WeatherInfoRepository = WeatherInfoRepository()
 
     private val weatherRepository: WeatherRepository = WeatherRepositoryImpl(
         remoteSource = remoteSource,

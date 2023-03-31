@@ -5,8 +5,9 @@ import com.example.androidhwsemester2.domain.entity.WeatherEntity
 import com.example.androidhwsemester2.domain.entity.mapWeatherEntity
 import com.example.androidhwsemester2.domain.repository.WeatherRepository
 import com.example.androidhwsemester2.presentation.model.WeatherDataModel
+import javax.inject.Inject
 
-class GetWeatherByCityNameUseCase(
+class GetWeatherByCityNameUseCase @Inject constructor(
     private val weatherRepository: WeatherRepository
 ) {
     suspend operator fun invoke(cityName: String, cache: Boolean = false): WeatherDataModel {

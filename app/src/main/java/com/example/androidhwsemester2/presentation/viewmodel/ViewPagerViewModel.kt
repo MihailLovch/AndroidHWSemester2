@@ -9,9 +9,13 @@ import com.example.androidhwsemester2.domain.usecase.GetWeatherByCityNameUseCase
 import com.example.androidhwsemester2.domain.usecase.SaveCityInfoUseCase
 import com.example.androidhwsemester2.presentation.extensions.handleException
 import com.example.androidhwsemester2.presentation.model.WeatherDataModel
+import dagger.assisted.AssistedFactory
+import dagger.assisted.AssistedInject
 import kotlinx.coroutines.launch
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class ViewPagerViewModel(
+class ViewPagerViewModel @Inject constructor(
     private val getCitesUseCase: GetCitiesFromDataBaseUseCase,
     private val getWeatherByCityNameUseCase: GetWeatherByCityNameUseCase,
     private val saveCityUseCase: SaveCityInfoUseCase
@@ -49,9 +53,11 @@ class ViewPagerViewModel(
         }
 
     }
+
     fun refreshData(position: Int) {
         viewModelScope.launch {
-            _weatherListState[position].value = getWeatherByCityNameUseCase(_weatherListState[position].value?.cityName.toString())
+            _weatherListState[position].value =
+                getWeatherByCityNameUseCase(_weatherListState[position].value?.cityName.toString())
             _isRefreshingState.value = false
         }
     }
@@ -82,23 +88,5 @@ class ViewPagerViewModel(
 
     fun getCurrentCities(): List<WeatherDataModel?> {
         return _weatherListState.map { it.value }
-    }
-
-    companion object {
-        val Factory: ViewModelProvider.Factory = viewModelFactory {
-            initializer {
-                val getWeatherByCityNameUseCase = this[ViewModelArgsKey.getWeatherByNameUseCase]
-                    ?: throw IllegalArgumentException()
-                val getCitesUseCase = this[ViewModelArgsKey.getCitiesFromDataBaseUseCase]
-                    ?: throw java.lang.IllegalArgumentException()
-                val saveCityUseCase = this[ViewModelArgsKey.saveCityUseCase]
-                    ?: throw java.lang.IllegalArgumentException()
-                ViewPagerViewModel(
-                    getCitesUseCase,
-                    getWeatherByCityNameUseCase,
-                    saveCityUseCase
-                )
-            }
-        }
     }
 }

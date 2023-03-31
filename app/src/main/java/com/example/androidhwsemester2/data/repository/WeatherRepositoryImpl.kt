@@ -12,8 +12,9 @@ import com.example.androidhwsemester2.domain.repository.WeatherRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.util.*
+import javax.inject.Inject
 
-class WeatherRepositoryImpl(
+class WeatherRepositoryImpl @Inject constructor(
     private val remoteSource: OpenWeatherApiService,
     private val localSource: WeatherInfoRepository,
 
