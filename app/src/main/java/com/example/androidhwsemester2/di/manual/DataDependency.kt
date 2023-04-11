@@ -16,13 +16,14 @@ class DataDependency(context: Context) {
     private val remoteSource: OpenWeatherApiService = OpenWeatherService.getInstance()
     private val localSource: WeatherInfoRepository = WeatherInfoRepository()
 
-    private val weatherRepository: WeatherRepository = WeatherRepositoryImpl(
-        remoteSource = remoteSource,
-        localSource = localSource,
-    )
+//    private val weatherRepository: WeatherRepository = WeatherRepositoryImpl(
+//        remoteSource = remoteSource,
+//        localSource = localSource,
+//        secondRemoteSource = Any()
+//    )
 
-    val getWeatherByNameUseCase: GetWeatherByCityNameUseCase = GetWeatherByCityNameUseCase(weatherRepository)
-    val getWeatherByCordsUseCase: GetWeatherByCurrentCordsUseCase = GetWeatherByCurrentCordsUseCase(weatherRepository)
-    val getCitiesFromDataBaseUseCase: GetCitiesFromDataBaseUseCase = GetCitiesFromDataBaseUseCase(weatherRepository)
-    val saveCityInfoUseCase: SaveCityInfoUseCase = SaveCityInfoUseCase(weatherRepository)
+//    val getWeatherByNameUseCase: GetWeatherByCityNameUseCase = GetWeatherByCityNameUseCase(weatherRepository)
+//    val getWeatherByCordsUseCase: GetWeatherByCurrentCordsUseCase = GetWeatherByCurrentCordsUseCase(weatherRepository)
+//    val getCitiesFromDataBaseUseCase: GetCitiesFromDataBaseUseCase = GetCitiesFromDataBaseUseCase(weatherRepository)
+//    val saveCityInfoUseCase: SaveCityInfoUseCase = SaveCityInfoUseCase(weatherRepository)
 }

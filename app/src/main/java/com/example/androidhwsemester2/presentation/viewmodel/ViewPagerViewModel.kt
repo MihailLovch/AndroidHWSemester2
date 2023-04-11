@@ -15,11 +15,16 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 import javax.inject.Singleton
 
-class ViewPagerViewModel @Inject constructor(
+class ViewPagerViewModel @AssistedInject constructor(
     private val getCitesUseCase: GetCitiesFromDataBaseUseCase,
     private val getWeatherByCityNameUseCase: GetWeatherByCityNameUseCase,
     private val saveCityUseCase: SaveCityInfoUseCase
 ) : ViewModel() {
+
+    @AssistedFactory
+    interface Factory{
+        fun create():ViewPagerViewModel
+    }
 
     private val _weatherListState: ArrayList<MutableLiveData<WeatherDataModel?>> = arrayListOf()
     var weatherListState: List<LiveData<WeatherDataModel?>> = _weatherListState
@@ -59,6 +64,12 @@ class ViewPagerViewModel @Inject constructor(
             _weatherListState[position].value =
                 getWeatherByCityNameUseCase(_weatherListState[position].value?.cityName.toString())
             _isRefreshingState.value = false
+        }
+    }
+
+    fun refreshData(){
+        for (i in _weatherListState.indices){
+            refreshData(i)
         }
     }
 

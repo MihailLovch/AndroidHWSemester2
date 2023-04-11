@@ -1,6 +1,7 @@
 package com.example.androidhwsemester2.domain.repository
 
 import com.example.androidhwsemester2.data.local.entity.CityWeatherInfo
+import com.example.androidhwsemester2.domain.entity.WeatherDayInfo
 import com.example.androidhwsemester2.domain.entity.WeatherEntity
 
 interface WeatherRepository {
@@ -12,4 +13,9 @@ interface WeatherRepository {
     suspend fun getAllCities(): List<WeatherEntity>
 
     suspend fun saveCity(model : WeatherEntity): Long
+    suspend fun getWeatherHistoricalInfoByCords(
+        lat: Double,
+        long: Double,
+        count: Int
+    ): List<WeatherDayInfo>
 }

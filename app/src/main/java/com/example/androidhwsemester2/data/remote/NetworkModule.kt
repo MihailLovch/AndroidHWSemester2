@@ -2,7 +2,6 @@ package com.example.androidhwsemester2.data.remote
 
 import com.example.androidhwsemester2.BuildConfig
 import com.example.androidhwsemester2.data.remote.network.OpenWeatherApiService
-import com.example.androidhwsemester2.presentation.viewmodel.ViewPagerViewModel
 import dagger.Module
 import dagger.Provides
 import okhttp3.Interceptor
@@ -10,6 +9,8 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Named
+import javax.inject.Qualifier
 import javax.inject.Singleton
 
 @Module
@@ -20,7 +21,7 @@ object NetworkModule {
     fun provideOkHttpClient(
         appIdInterceptor: Interceptor,
         httpLoggingInterceptor: HttpLoggingInterceptor
-    ): OkHttpClient{
+    ): OkHttpClient {
         val client = OkHttpClient.Builder()
             .addInterceptor(appIdInterceptor)
         if (BuildConfig.DEBUG) {
@@ -29,8 +30,10 @@ object NetworkModule {
         return client.build()
 
     }
+
     @Singleton
     @Provides
+    @FirstRetrofit
     fun provideRetrofit(
         okHttpClient: OkHttpClient
     ): OpenWeatherApiService =
@@ -40,9 +43,23 @@ object NetworkModule {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(OpenWeatherApiService::class.java)
+
+    @Provides
+    @Singleton
+    @SecondRetrofit
+    fun provideRetrofit5Days(
+        okHttpClient: OkHttpClient
+    ): OpenWeatherApiService =
+        Retrofit.Builder()
+            .baseUrl(BuildConfig.WEATHER_BASE_URL)
+            .client(okHttpClient)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(OpenWeatherApiService::class.java)
+
     @Singleton
     @Provides
-    fun provideAppIdInterceptor(): Interceptor{
+    fun provideAppIdInterceptor(): Interceptor {
         return Interceptor { chain ->
             val modifiedUrl = chain.request().url.newBuilder()
                 .addQueryParameter("appid", BuildConfig.WEATHER_KEY)
@@ -53,6 +70,7 @@ object NetworkModule {
             chain.proceed(request)
         }
     }
+
     @Singleton
     @Provides
     fun provideHttpLoggingInterceptor(): HttpLoggingInterceptor {
@@ -60,3 +78,11 @@ object NetworkModule {
     }
 
 }
+
+@Qualifier
+@Retention(AnnotationRetention.RUNTIME)
+annotation class FirstRetrofit
+
+@Qualifier
+@Retention(AnnotationRetention.RUNTIME)
+annotation class SecondRetrofit

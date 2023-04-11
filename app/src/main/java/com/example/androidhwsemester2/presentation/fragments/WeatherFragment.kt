@@ -31,8 +31,8 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
 
     private val viewModel: WeatherViewModel by viewModels(extrasProducer = {
         MutableCreationExtras().apply {
-            set(ViewModelArgsKey.getWeatherByNameUseCase, dataDependency?.getWeatherByNameUseCase!!)
-            set(ViewModelArgsKey.getWeatherByCordsUseCase, dataDependency?.getWeatherByCordsUseCase!!)
+//            set(ViewModelArgsKey.getWeatherByNameUseCase, dataDependency?.getWeatherByNameUseCase!!)
+//            set(ViewModelArgsKey.getWeatherByCordsUseCase, dataDependency?.getWeatherByCordsUseCase!!)
         }
     }) {
         WeatherViewModel.factory

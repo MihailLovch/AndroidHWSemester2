@@ -13,7 +13,7 @@ class VMFactory<T : ViewModel>(
 ) : AbstractSavedStateViewModelFactory(savedStateRegistryOwner, null) {
 
     @Suppress("WRONG_TYPE_PARAMETER_NULLABILITY_FOR_JAVA_OVERRIDE", "UNCHECKED_CAST")
-    override fun <T : ViewModel?> create(
+    override fun <T : ViewModel> create(
         key: String,
         modelClass: Class<T>,
         handle: SavedStateHandle

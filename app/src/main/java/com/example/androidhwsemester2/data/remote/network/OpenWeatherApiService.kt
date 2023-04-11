@@ -1,5 +1,6 @@
 package com.example.androidhwsemester2.data.remote.network
 
+import com.example.androidhwsemester2.data.remote.model.WeatherForecastResponse
 import com.example.androidhwsemester2.data.remote.model.WeatherResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -15,4 +16,11 @@ interface OpenWeatherApiService {
         @Query("lat") latitude: Double,
         @Query("lon") longitude: Double,
     ): WeatherResponse
+
+    @GET("forecast")
+    suspend fun getFiveDayWeather(
+        @Query("lat") latitude: Double,
+        @Query("lon") longitude: Double,
+        @Query("cnt") count: Int,
+    ): WeatherForecastResponse
 }

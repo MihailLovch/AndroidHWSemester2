@@ -1,12 +1,14 @@
 package com.example.androidhwsemester2.data.repository
 
-import com.example.androidhwsemester2.data.local.entity.CityWeatherInfo
 import com.example.androidhwsemester2.data.local.repository.WeatherInfoRepository
 import com.example.androidhwsemester2.data.mappers.CityWeatherInfoMapper
 import com.example.androidhwsemester2.data.mappers.WeatherEntityMapper
 import com.example.androidhwsemester2.data.mappers.WeatherResponseMapper
-import com.example.androidhwsemester2.data.remote.model.WeatherResponse
+import com.example.androidhwsemester2.data.mappers.mapToWeatherDayEntity
+import com.example.androidhwsemester2.data.remote.FirstRetrofit
+import com.example.androidhwsemester2.data.remote.SecondRetrofit
 import com.example.androidhwsemester2.data.remote.network.OpenWeatherApiService
+import com.example.androidhwsemester2.domain.entity.WeatherDayInfo
 import com.example.androidhwsemester2.domain.entity.WeatherEntity
 import com.example.androidhwsemester2.domain.repository.WeatherRepository
 import kotlinx.coroutines.Dispatchers
@@ -15,7 +17,8 @@ import java.util.*
 import javax.inject.Inject
 
 class WeatherRepositoryImpl @Inject constructor(
-    private val remoteSource: OpenWeatherApiService,
+    @FirstRetrofit private val remoteSource: OpenWeatherApiService,
+    @SecondRetrofit private val secondRemoteSource: OpenWeatherApiService,
     private val localSource: WeatherInfoRepository,
 
     ) : WeatherRepository {
@@ -35,6 +38,20 @@ class WeatherRepositoryImpl @Inject constructor(
             } else {
                 (WeatherResponseMapper::mapToDomain)(remoteSource.getWeatherByCityName(city = city))
             }
+        }
+    }
+
+    override suspend fun getWeatherHistoricalInfoByCords(
+        lat: Double,
+        long: Double,
+        count: Int,
+    ): List<WeatherDayInfo> {
+        return withContext(Dispatchers.IO) {
+            secondRemoteSource.getFiveDayWeather(
+                latitude = lat,
+                longitude = long,
+                count = count
+            ).list.map {it?.main }.map {it.mapToWeatherDayEntity() }
         }
     }
 
@@ -61,11 +78,12 @@ class WeatherRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun getAllCities(): List<WeatherEntity>{
-        return withContext(Dispatchers.IO){
-            localSource.getAllCities().map {(CityWeatherInfoMapper::map)(it) }
+    override suspend fun getAllCities(): List<WeatherEntity> {
+        return withContext(Dispatchers.IO) {
+            localSource.getAllCities().map { (CityWeatherInfoMapper::map)(it) }
         }
     }
+
     override suspend fun checkCache(lat: Double, lon: Double): WeatherEntity? {
         return withContext(Dispatchers.IO) {
             val cityWeatherInfo = localSource.getCityWeatherInfoByCords(lat = lat, lon = lon)
@@ -84,6 +102,7 @@ class WeatherRepositoryImpl @Inject constructor(
             localSource.saveCityWeatherInfo((WeatherEntityMapper::map)(model))
         }
     }
+
     override suspend fun checkCache(cityName: String): WeatherEntity? {
         return withContext(Dispatchers.IO) {
             val cityWeatherInfo = localSource.getCityWeatherInfoByName(cityName)

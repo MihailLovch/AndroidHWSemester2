@@ -1,4 +1,4 @@
-package com.example.androidhwsemester2.presentation
+package com.example.androidhwsemester2.presentation.adapters
 
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
