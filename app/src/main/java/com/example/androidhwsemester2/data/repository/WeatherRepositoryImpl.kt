@@ -44,14 +44,17 @@ class WeatherRepositoryImpl @Inject constructor(
     override suspend fun getWeatherHistoricalInfoByCords(
         lat: Double,
         long: Double,
-        count: Int,
+        days: Int,
     ): List<WeatherDayInfo> {
         return withContext(Dispatchers.IO) {
             secondRemoteSource.getFiveDayWeather(
                 latitude = lat,
                 longitude = long,
-                count = count
-            ).list.map {it?.main }.map {it.mapToWeatherDayEntity() }
+                count = days * 8 // тк в респонсе таймстамп 3 часа
+            ).list.asSequence().map { it?.main }
+                .map { it.mapToWeatherDayEntity() }.withIndex().filter {it.index % 8 == 0 }
+                .map {it.value }
+                .toList()
         }
     }
 

@@ -18,7 +18,7 @@ class DailyInfoViewModel @AssistedInject constructor(
         emit(getHistoricalInfoUseCase(
             lat = lat,
             long = long,
-            count = DAYS_NUMBER
+            days = DAYS_NUMBER
         ))
     }
 

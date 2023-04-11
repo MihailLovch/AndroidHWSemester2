@@ -7,11 +7,11 @@ import javax.inject.Inject
 class GetHistoricalWeatherInfoByCordsUseCase @Inject constructor(
     private val weatherRepository: WeatherRepository,
 ) {
-    suspend operator fun invoke(lat: Double, long: Double, count: Int): List<WeatherDayInfo> {
+    suspend operator fun invoke(lat: Double, long: Double, days: Int): List<WeatherDayInfo> {
         return weatherRepository.getWeatherHistoricalInfoByCords(
             lat = lat,
             long = long,
-            count = count
+            count = days
         )
     }
 }
