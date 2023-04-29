@@ -17,4 +17,6 @@
     <string name="last_date">Last request at %1$s</string>
     <string name="restart">RESTART</string>
     <string name="name_amount">%1$s : %2$d</string>
+    <string name="copy_token">Copy token</string>
+    <string name="delete_token">Delete token</string>
 </resources>

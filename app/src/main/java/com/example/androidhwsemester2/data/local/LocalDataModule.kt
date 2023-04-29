@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.annotation.ChecksSdkIntAtLeast
 import androidx.room.Room
 import com.example.androidhwsemester2.data.local.dao.CityWeatherInfoDao
+import com.example.androidhwsemester2.data.local.dao.TokenDao
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -28,4 +29,9 @@ object LocalDataModule {
         dataBase: AppDataBase,
     ): CityWeatherInfoDao = dataBase.cityWeatherInfoDao()
 
+    @Provides
+    @Singleton
+    fun provideTokenDao(
+        dataBase: AppDataBase,
+    ): TokenDao = dataBase.tokenDao()
 }

@@ -1,13 +1,14 @@
 package com.example.androidhwsemester2.presentation.fragments.debug
 
 import android.app.Activity
+import android.content.ClipData
+import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
 import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.commit
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.androidhwsemester2.R
 import com.example.androidhwsemester2.databinding.FragmentDebugBinding
@@ -15,7 +16,6 @@ import com.example.androidhwsemester2.di.dagger.appComponent
 import com.example.androidhwsemester2.di.dagger.lazyViewModel
 import com.example.androidhwsemester2.presentation.MainActivity
 import com.example.androidhwsemester2.presentation.adapters.DebugAdapter
-import com.example.androidhwsemester2.presentation.fragments.WeatherPagerFragment
 
 
 class DebugFragment : Fragment(R.layout.fragment_debug) {
@@ -34,15 +34,25 @@ class DebugFragment : Fragment(R.layout.fragment_debug) {
     }
 
     private fun initViews() {
-        viewBinding.restartBtn.setOnClickListener {
-            val intent = Intent(context, MainActivity::class.java)
-            intent.addFlags(FLAG_ACTIVITY_NEW_TASK)
-            requireContext().startActivity(intent)
-            if (context is Activity) {
-                (context as Activity).finish()
-            }
+        with(viewBinding) {
+            restartBtn.setOnClickListener {
+                val intent = Intent(context, MainActivity::class.java)
+                intent.addFlags(FLAG_ACTIVITY_NEW_TASK)
+                requireContext().startActivity(intent)
+                if (context is Activity) {
+                    (context as Activity).finish()
+                }
 
-            Runtime.getRuntime().exit(0)
+                Runtime.getRuntime().exit(0)
+            }
+            copyTokenBtn.setOnClickListener {
+                (context?.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager).setPrimaryClip(
+                    ClipData.newPlainText("label",viewModel.getToken())
+                )
+            }
+            deleteTokenBtn.setOnClickListener {
+                viewModel.deleteToken()
+            }
         }
     }
 

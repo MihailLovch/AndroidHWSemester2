@@ -22,4 +22,6 @@ interface WeatherRepository {
 
     fun getLastRequestDate(): Single<Long>
     fun getAllCitiesRX(): Single<List<CityWeatherInfo>>
+    fun getToken(): Single<String>
+    fun saveToken(token: String)
 }

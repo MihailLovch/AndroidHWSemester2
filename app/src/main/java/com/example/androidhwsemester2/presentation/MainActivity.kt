@@ -8,12 +8,14 @@ import android.hardware.SensorManager
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.commit
 import com.example.androidhwsemester2.R
 import com.example.androidhwsemester2.presentation.fragments.WeatherPagerFragment
 import com.example.androidhwsemester2.presentation.fragments.debug.DebugFragment
 import com.example.androidhwsemester2.presentation.permissions.PermissionsHandler
+import com.google.firebase.messaging.FirebaseMessaging
 import kotlin.math.sqrt
 
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
@@ -46,6 +48,8 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         setContentView(R.layout.activity_main)
         sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
         permissionsHandler = PermissionsHandler(this)
+
+
         supportFragmentManager.commit {
             add(
                 fragmentContainerId,

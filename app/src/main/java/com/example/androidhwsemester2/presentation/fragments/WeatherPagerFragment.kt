@@ -15,6 +15,7 @@ import com.example.androidhwsemester2.presentation.adapters.CityPagerAdapter
 import com.example.androidhwsemester2.presentation.extensions.shortToast
 
 import com.example.androidhwsemester2.presentation.viewmodel.ViewPagerViewModel
+import com.google.firebase.messaging.FirebaseMessaging
 
 class WeatherPagerFragment : Fragment(R.layout.fragment_view_pager) {
 

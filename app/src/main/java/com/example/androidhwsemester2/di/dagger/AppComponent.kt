@@ -13,7 +13,7 @@ import dagger.Component
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [DataModule::class,AppBindsModule::class,])
+@Component(modules = [DataModule::class,AppBindsModule::class,ServiceModule::class])
 interface AppComponent {
 
     fun inject(fragment: WeatherPagerFragment)

@@ -1,6 +1,7 @@
 package com.example.androidhwsemester2.data.repository
 
 import com.example.androidhwsemester2.data.local.entity.CityWeatherInfo
+import com.example.androidhwsemester2.data.local.entity.TokenEntity
 import com.example.androidhwsemester2.data.local.repository.WeatherInfoRepository
 import com.example.androidhwsemester2.data.mappers.CityWeatherInfoMapper
 import com.example.androidhwsemester2.data.mappers.WeatherEntityMapper
@@ -125,6 +126,12 @@ class WeatherRepositoryImpl @Inject constructor(
         localSource.getAllCitiesRX()
     override fun getLastRequestDate(): Single<Long> =
         localSource.getLastRequestDate()
+
+    override fun getToken(): Single<String> =
+        localSource.getToken()
+
+    override fun saveToken(token: String) =
+        localSource.saveToken(TokenEntity(1,token))
 
     private companion object {
         const val CACHE_LIFETIME = 60 * 1000
