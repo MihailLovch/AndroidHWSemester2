@@ -5,6 +5,7 @@ import androidx.room.Room
 import com.example.androidhwsemester2.data.local.AppDataBase
 import com.example.androidhwsemester2.data.local.dao.CityWeatherInfoDao
 import com.example.androidhwsemester2.data.local.entity.CityWeatherInfo
+import io.reactivex.rxjava3.core.Single
 import javax.inject.Inject
 
 class WeatherInfoRepository @Inject constructor() {
@@ -19,9 +20,15 @@ class WeatherInfoRepository @Inject constructor() {
         return weatherInfoDao.getInfoByCityCords(lon = lon, lat = lat)
     }
     suspend fun saveCityWeatherInfo(info: CityWeatherInfo): Long{
-        return weatherInfoDao.save(info)
+        val count = weatherInfoDao.getInfoByCityName(info.cityName)?.requestCount ?: 0
+        return weatherInfoDao.save(info.apply { requestCount = count+1 })
     }
     suspend fun getAllCities(): List<CityWeatherInfo?>{
         return weatherInfoDao.getAll()
     }
+
+    fun getLastRequestDate(): Single<Long> = weatherInfoDao.getLastRequestDate()
+
+    fun getAllCitiesRX(): Single<List<CityWeatherInfo>> =
+        weatherInfoDao.getAllCities()
 }

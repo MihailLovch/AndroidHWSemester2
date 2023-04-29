@@ -25,4 +25,6 @@ data class CityWeatherInfo(
     val lastSearch: Date,
     val lat:Double,
     val lon:Double,
+    @ColumnInfo(name ="request_count")
+    var requestCount: Int = 1
 ): java.io.Serializable

@@ -2,6 +2,7 @@ package com.example.androidhwsemester2.data.local.dao
 
 import androidx.room.*
 import com.example.androidhwsemester2.data.local.entity.CityWeatherInfo
+import io.reactivex.rxjava3.core.Single
 
 @Dao
 interface CityWeatherInfoDao {
@@ -17,4 +18,9 @@ interface CityWeatherInfoDao {
 
     @Query("SELECT * from cache")
     suspend fun getAll(): List<CityWeatherInfo>
+    @Query("SELECT max(last_search) FROM cache")
+    fun getLastRequestDate(): Single<Long>
+
+    @Query("SELECT * from cache")
+    fun getAllCities(): Single<List<CityWeatherInfo>>
 }

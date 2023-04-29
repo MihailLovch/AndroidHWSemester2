@@ -5,6 +5,7 @@ import com.example.androidhwsemester2.data.DataModule
 import com.example.androidhwsemester2.presentation.fragments.AddingBottomSheetFragment
 import com.example.androidhwsemester2.presentation.fragments.CityInfoFragment
 import com.example.androidhwsemester2.presentation.fragments.WeatherPagerFragment
+import com.example.androidhwsemester2.presentation.fragments.debug.DebugViewModel
 import com.example.androidhwsemester2.presentation.viewmodel.DailyInfoViewModel
 import com.example.androidhwsemester2.presentation.viewmodel.ViewPagerViewModel
 import dagger.BindsInstance
@@ -19,6 +20,7 @@ interface AppComponent {
     fun inject(fragment: AddingBottomSheetFragment)
     fun inject(fragment: CityInfoFragment)
 
+    fun debugViewModel() : DebugViewModel.Factory
     fun viewPagerViewModel(): ViewPagerViewModel.Factory
     fun dailyInfoViewModel(): DailyInfoViewModel.Factory
 

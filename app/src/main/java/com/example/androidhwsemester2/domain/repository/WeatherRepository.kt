@@ -3,6 +3,7 @@ package com.example.androidhwsemester2.domain.repository
 import com.example.androidhwsemester2.data.local.entity.CityWeatherInfo
 import com.example.androidhwsemester2.domain.entity.WeatherDayInfo
 import com.example.androidhwsemester2.domain.entity.WeatherEntity
+import io.reactivex.rxjava3.core.Single
 
 interface WeatherRepository {
     suspend fun getWeatherInfoByCityName(city: String, cache:Boolean): WeatherEntity
@@ -18,4 +19,7 @@ interface WeatherRepository {
         long: Double,
         count: Int
     ): List<WeatherDayInfo>
+
+    fun getLastRequestDate(): Single<Long>
+    fun getAllCitiesRX(): Single<List<CityWeatherInfo>>
 }

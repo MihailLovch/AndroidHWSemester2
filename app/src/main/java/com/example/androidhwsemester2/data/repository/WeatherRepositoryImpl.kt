@@ -1,5 +1,6 @@
 package com.example.androidhwsemester2.data.repository
 
+import com.example.androidhwsemester2.data.local.entity.CityWeatherInfo
 import com.example.androidhwsemester2.data.local.repository.WeatherInfoRepository
 import com.example.androidhwsemester2.data.mappers.CityWeatherInfoMapper
 import com.example.androidhwsemester2.data.mappers.WeatherEntityMapper
@@ -11,6 +12,7 @@ import com.example.androidhwsemester2.data.remote.network.OpenWeatherApiService
 import com.example.androidhwsemester2.domain.entity.WeatherDayInfo
 import com.example.androidhwsemester2.domain.entity.WeatherEntity
 import com.example.androidhwsemester2.domain.repository.WeatherRepository
+import io.reactivex.rxjava3.core.Single
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.util.*
@@ -118,6 +120,11 @@ class WeatherRepositoryImpl @Inject constructor(
             }
         }
     }
+
+    override fun getAllCitiesRX(): Single<List<CityWeatherInfo>> =
+        localSource.getAllCitiesRX()
+    override fun getLastRequestDate(): Single<Long> =
+        localSource.getLastRequestDate()
 
     private companion object {
         const val CACHE_LIFETIME = 60 * 1000
