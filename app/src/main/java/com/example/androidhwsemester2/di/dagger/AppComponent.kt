@@ -12,7 +12,13 @@ import dagger.Component
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [DataModule::class,AppBindsModule::class,])
+@Component(
+    modules = [
+        DataModule::class,
+        AppBindsModule::class,
+        DispatchersModule::class,
+    ]
+)
 interface AppComponent {
 
     fun inject(fragment: WeatherPagerFragment)
@@ -23,7 +29,7 @@ interface AppComponent {
     fun dailyInfoViewModel(): DailyInfoViewModel.Factory
 
     @Component.Builder
-    interface Builder{
+    interface Builder {
         fun context(@BindsInstance context: Context): Builder
         fun build(): AppComponent
     }
