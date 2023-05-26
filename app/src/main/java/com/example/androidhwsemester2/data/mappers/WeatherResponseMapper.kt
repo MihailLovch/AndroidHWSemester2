@@ -40,7 +40,8 @@ object WeatherResponseMapper {
                 humidity = response.main?.humidity ?: 0f,
                 pressure = response.main?.pressure ?: 0f,
                 windSpeed = response.wind?.speed ?: 0f,
-                iconId = response.weatherList?.first()?.icon ?: "",
+//                iconId = response.weatherList?.first()?.icon ?: "",
+                iconId = if  (response.weatherList?.isEmpty() ?: true) "" else response.weatherList?.first()?.icon ?: "",
                 lat = response.coords?.latitude ?: 0.0,
                 lon = response.coords?.longitude ?: 0.0,
                 lastSearch = Calendar.getInstance().time
